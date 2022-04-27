@@ -19,6 +19,7 @@
 		24AA93CD25AF0F0D007588C7 /* InstabugNetworkClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AA93B825AF0F0D007588C7 /* InstabugNetworkClient.framework */; };
 		24AA93CE25AF0F0D007588C7 /* InstabugNetworkClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AA93B825AF0F0D007588C7 /* InstabugNetworkClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24AA93D925AF0F24007588C7 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AA93D825AF0F24007588C7 /* NetworkClient.swift */; };
+		F465143728194D7100F5244B /* NetworkLoggerStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F465143528194D7100F5244B /* NetworkLoggerStore.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		24AA93C725AF0F0D007588C7 /* InstabugNetworkClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstabugNetworkClientTests.swift; sourceTree = "<group>"; };
 		24AA93C925AF0F0D007588C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24AA93D825AF0F24007588C7 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		F465143628194D7100F5244B /* NetworkLoggerStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NetworkLoggerStore.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,9 +143,10 @@
 		24AA93B925AF0F0D007588C7 /* InstabugNetworkClient */ = {
 			isa = PBXGroup;
 			children = (
+				F465143B2819500300F5244B /* NetworkClient */,
+				F465143828194F7300F5244B /* CoreData */,
 				24AA93BA25AF0F0D007588C7 /* InstabugNetworkClient.h */,
 				24AA93BB25AF0F0D007588C7 /* Info.plist */,
-				24AA93D825AF0F24007588C7 /* NetworkClient.swift */,
 			);
 			path = InstabugNetworkClient;
 			sourceTree = "<group>";
@@ -155,6 +158,38 @@
 				24AA93C925AF0F0D007588C7 /* Info.plist */,
 			);
 			path = InstabugNetworkClientTests;
+			sourceTree = "<group>";
+		};
+		F465143828194F7300F5244B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				F465143A28194FB600F5244B /* Manager */,
+				F465143928194FAE00F5244B /* Store */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		F465143928194FAE00F5244B /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				F465143528194D7100F5244B /* NetworkLoggerStore.xcdatamodeld */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		F465143A28194FB600F5244B /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		F465143B2819500300F5244B /* NetworkClient */ = {
+			isa = PBXGroup;
+			children = (
+				24AA93D825AF0F24007588C7 /* NetworkClient.swift */,
+			);
+			path = NetworkClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F465143728194D7100F5244B /* NetworkLoggerStore.xcdatamodeld in Sources */,
 				24AA93D925AF0F24007588C7 /* NetworkClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,6 +686,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F465143528194D7100F5244B /* NetworkLoggerStore.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F465143628194D7100F5244B /* NetworkLoggerStore.xcdatamodel */,
+			);
+			currentVersion = F465143628194D7100F5244B /* NetworkLoggerStore.xcdatamodel */;
+			path = NetworkLoggerStore.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 24AA939325AF0DA4007588C7 /* Project object */;
 }

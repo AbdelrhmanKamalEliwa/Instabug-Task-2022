@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="20G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="NetworkLogger" representedClassName="NetworkLogger" syncable="YES" codeGenerationType="class">
+        <attribute name="domainError" optional="YES" attributeType="String"/>
+        <attribute name="errorCode" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="requestMethod" optional="YES" attributeType="String"/>
+        <attribute name="requestPayload" optional="YES" attributeType="Binary"/>
+        <attribute name="requestURL" optional="YES" attributeType="String"/>
+        <attribute name="responsePayload" optional="YES" attributeType="Binary"/>
+        <attribute name="responseStatusCode" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="NetworkLogger" positionX="-63" positionY="-18" width="128" height="149"/>
+    </elements>
+</model>
