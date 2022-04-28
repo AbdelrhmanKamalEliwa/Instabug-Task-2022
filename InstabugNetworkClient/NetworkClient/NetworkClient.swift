@@ -10,6 +10,12 @@ import Foundation
 public class NetworkClient {
     public static var shared = NetworkClient()
 
+    private var networkLoggerManager: NetworkLoggerManagerContract?
+    
+    public func configureNetworkLoggerManager() {
+        self.networkLoggerManager = NetworkLoggerManager()
+    }
+    
     // MARK: Network requests
     public func get(_ url: URL, completionHandler: @escaping (Data?) -> Void) {
         executeRequest(url, method: "GET", payload: nil, completionHandler: completionHandler)
@@ -36,11 +42,18 @@ public class NetworkClient {
             guard let self = self else { return }
             guard let httpResponse = response as? HTTPURLResponse else { return }
             
-            //let networkLoggerData: NetworkLogger = .init(entity: <#T##NSEntityDescription#>, insertInto: <#T##NSManagedObjectContext?#>)
-            //let logData: NetworkLoggerEn
-            #warning("Record request/response")
-            fatalError("Not implemented")
-        
+            let networkLoggerData: LogDataModel = .init(
+                domainError: error?.localizedDescription,
+                errorCode: (error as NSError?)?.code,
+                requestMethod: method,
+                requestPayload: payload,
+                requestURL: url.absoluteString,
+                responsePayload: data,
+                responseStatusCode: httpResponse.statusCode
+            )
+            
+            self.saveLog(networkLoggerData)
+            
             DispatchQueue.main.async {
                 completionHandler(data)
             }
@@ -48,8 +61,21 @@ public class NetworkClient {
     }
 
     // MARK: Network recording
-    #warning("Replace Any with an appropriate type")
-    public func allNetworkRequests() -> Any {
-        fatalError("Not implemented")
+    public func allNetworkRequests() -> [LogDataModel] {
+        guard let networkLoggerManager = networkLoggerManager else {
+            fatalError("Network logger manager must be initialized")
+        }
+        
+        return networkLoggerManager.fetchLogsData()
+    }
+}
+
+private extension NetworkClient {
+    func saveLog(_ log: LogDataModel) {
+        guard let networkLoggerManager = networkLoggerManager else {
+            fatalError("Network logger manager must be initialized")
+        }
+        
+        networkLoggerManager.saveLog(log)
     }
 }

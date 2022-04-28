@@ -24,11 +24,13 @@
 		F4651443281AD56800F5244B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651442281AD56800F5244B /* CoreDataManager.swift */; };
 		F4651447281ADD2C00F5244B /* CoreDataManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651446281ADD2C00F5244B /* CoreDataManagerContract.swift */; };
 		F4651449281ADD5A00F5244B /* CoreDataStoreName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651448281ADD5A00F5244B /* CoreDataStoreName.swift */; };
-		F4651456281B035500F5244B /* NetworkLogger+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651454281B035500F5244B /* NetworkLogger+CoreDataClass.swift */; };
-		F4651457281B035500F5244B /* NetworkLogger+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651455281B035500F5244B /* NetworkLogger+CoreDataProperties.swift */; };
 		F4651459281B03A300F5244B /* NetworkLogger+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651458281B03A300F5244B /* NetworkLogger+Helpers.swift */; };
 		F465145C281B139700F5244B /* Data+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465145B281B139700F5244B /* Data+Helpers.swift */; };
 		F465145F281B140B00F5244B /* NetworkLoggerManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465145E281B140B00F5244B /* NetworkLoggerManagerContract.swift */; };
+		F4651462281B1F3400F5244B /* NetworkLogger+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651460281B1F3400F5244B /* NetworkLogger+CoreDataClass.swift */; };
+		F4651463281B1F3400F5244B /* NetworkLogger+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651461281B1F3400F5244B /* NetworkLogger+CoreDataProperties.swift */; };
+		F4651466281B23B000F5244B /* LogDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651465281B23B000F5244B /* LogDataModel.swift */; };
+		F4651468281B23D000F5244B /* LogDataModel+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651467281B23D000F5244B /* LogDataModel+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,11 +92,13 @@
 		F4651442281AD56800F5244B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F4651446281ADD2C00F5244B /* CoreDataManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerContract.swift; sourceTree = "<group>"; };
 		F4651448281ADD5A00F5244B /* CoreDataStoreName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStoreName.swift; sourceTree = "<group>"; };
-		F4651454281B035500F5244B /* NetworkLogger+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkLogger+CoreDataClass.swift"; sourceTree = "<group>"; };
-		F4651455281B035500F5244B /* NetworkLogger+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkLogger+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F4651458281B03A300F5244B /* NetworkLogger+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkLogger+Helpers.swift"; sourceTree = "<group>"; };
 		F465145B281B139700F5244B /* Data+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Helpers.swift"; sourceTree = "<group>"; };
 		F465145E281B140B00F5244B /* NetworkLoggerManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerManagerContract.swift; sourceTree = "<group>"; };
+		F4651460281B1F3400F5244B /* NetworkLogger+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkLogger+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F4651461281B1F3400F5244B /* NetworkLogger+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkLogger+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F4651465281B23B000F5244B /* LogDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDataModel.swift; sourceTree = "<group>"; };
+		F4651467281B23D000F5244B /* LogDataModel+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogDataModel+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,6 +264,7 @@
 		F4651452281B02D100F5244B /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				F4651464281B23A500F5244B /* LogDataModel */,
 				F4651453281B02DD00F5244B /* NetworkLogger */,
 			);
 			path = Entities;
@@ -268,8 +273,8 @@
 		F4651453281B02DD00F5244B /* NetworkLogger */ = {
 			isa = PBXGroup;
 			children = (
-				F4651454281B035500F5244B /* NetworkLogger+CoreDataClass.swift */,
-				F4651455281B035500F5244B /* NetworkLogger+CoreDataProperties.swift */,
+				F4651460281B1F3400F5244B /* NetworkLogger+CoreDataClass.swift */,
+				F4651461281B1F3400F5244B /* NetworkLogger+CoreDataProperties.swift */,
 				F4651458281B03A300F5244B /* NetworkLogger+Helpers.swift */,
 			);
 			path = NetworkLogger;
@@ -289,6 +294,15 @@
 				F465145E281B140B00F5244B /* NetworkLoggerManagerContract.swift */,
 			);
 			path = Contract;
+			sourceTree = "<group>";
+		};
+		F4651464281B23A500F5244B /* LogDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				F4651465281B23B000F5244B /* LogDataModel.swift */,
+				F4651467281B23D000F5244B /* LogDataModel+Helpers.swift */,
+			);
+			path = LogDataModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,15 +459,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4651462281B1F3400F5244B /* NetworkLogger+CoreDataClass.swift in Sources */,
 				F465143728194D7100F5244B /* NetworkLoggerStore.xcdatamodeld in Sources */,
+				F4651466281B23B000F5244B /* LogDataModel.swift in Sources */,
 				F465145F281B140B00F5244B /* NetworkLoggerManagerContract.swift in Sources */,
 				F4651449281ADD5A00F5244B /* CoreDataStoreName.swift in Sources */,
+				F4651463281B1F3400F5244B /* NetworkLogger+CoreDataProperties.swift in Sources */,
 				F465143E2819514C00F5244B /* NetworkLoggerManager.swift in Sources */,
 				F4651443281AD56800F5244B /* CoreDataManager.swift in Sources */,
 				F4651447281ADD2C00F5244B /* CoreDataManagerContract.swift in Sources */,
 				F465145C281B139700F5244B /* Data+Helpers.swift in Sources */,
-				F4651456281B035500F5244B /* NetworkLogger+CoreDataClass.swift in Sources */,
-				F4651457281B035500F5244B /* NetworkLogger+CoreDataProperties.swift in Sources */,
+				F4651468281B23D000F5244B /* LogDataModel+Helpers.swift in Sources */,
 				24AA93D925AF0F24007588C7 /* NetworkClient.swift in Sources */,
 				F4651459281B03A300F5244B /* NetworkLogger+Helpers.swift in Sources */,
 			);

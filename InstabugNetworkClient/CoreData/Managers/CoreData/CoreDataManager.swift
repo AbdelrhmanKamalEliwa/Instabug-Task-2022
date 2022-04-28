@@ -42,8 +42,10 @@ private extension CoreDataManager {
     func createManagedObjectModel(
         _ resourceName: CoreDataStoreName
     ) {
+        
         guard
-            let modelURL = Bundle.main.url(forResource: resourceName.rawValue, withExtension: "momd")
+            let modelURL = Bundle(for: CoreDataManager.self)
+                .url(forResource: resourceName.rawValue, withExtension: "momd")
         else {
             fatalError("Failed to find data model")
         }

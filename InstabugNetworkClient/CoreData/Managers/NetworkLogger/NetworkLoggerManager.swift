@@ -32,6 +32,20 @@ class NetworkLoggerManager {
 // MARK: - NetworkLoggerManagerContract METHODS
 //
 extension NetworkLoggerManager: NetworkLoggerManagerContract {
+    func fetchLogsData() -> [LogDataModel] {
+        fetchLogs().map {
+            LogDataModel(
+                domainError: $0.domainError,
+                errorCode: Int($0.errorCode),
+                requestMethod: $0.requestMethod,
+                requestPayload: $0.requestPayload,
+                requestURL: $0.requestURL,
+                responsePayload: $0.responsePayload,
+                responseStatusCode: Int($0.responseStatusCode)
+            )
+        }
+    }
+    
     func fetchLogs() -> [NetworkLogger] {
         var logs: [NetworkLogger] = []
         
@@ -51,7 +65,7 @@ extension NetworkLoggerManager: NetworkLoggerManagerContract {
         return logs
     }
     
-    func saveLog(_ log: NetworkLogger) {
+    func saveLog(_ log: LogDataModel) {
         let logs: [NetworkLogger] = fetchLogs()
         
         context.performAndWait {

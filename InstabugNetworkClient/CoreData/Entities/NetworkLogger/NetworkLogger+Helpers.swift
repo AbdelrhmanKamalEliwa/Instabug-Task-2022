@@ -24,15 +24,3 @@ extension NetworkLogger {
         static let creationDate = "creationDate"
     }
 }
-
-extension NetworkLogger {
-    func getRequestPayload(with size: Int) -> Data? {
-        guard let data = self.requestPayload else { return nil }
-        return data.isBiggerThanInMegaBytes(size) ? "payload too large".data(using: .utf8) : requestPayload
-    }
-    
-    func getResponsePayload(with size: Int) -> Data? {
-        guard let data = self.responsePayload else { return nil }
-        return data.isBiggerThanInMegaBytes(size) ? "payload too large".data(using: .utf8) : responsePayload
-    }
-}
