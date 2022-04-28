@@ -31,7 +31,13 @@ public class NetworkClient {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method
         urlRequest.httpBody = payload
-        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+        
+        URLSession.shared.dataTask(with: urlRequest) { [weak self] data, response, error in
+            guard let self = self else { return }
+            guard let httpResponse = response as? HTTPURLResponse else { return }
+            
+            //let networkLoggerData: NetworkLogger = .init(entity: <#T##NSEntityDescription#>, insertInto: <#T##NSManagedObjectContext?#>)
+            //let logData: NetworkLoggerEn
             #warning("Record request/response")
             fatalError("Not implemented")
         

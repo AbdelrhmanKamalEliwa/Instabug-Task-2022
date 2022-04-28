@@ -20,6 +20,15 @@
 		24AA93CE25AF0F0D007588C7 /* InstabugNetworkClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 24AA93B825AF0F0D007588C7 /* InstabugNetworkClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		24AA93D925AF0F24007588C7 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AA93D825AF0F24007588C7 /* NetworkClient.swift */; };
 		F465143728194D7100F5244B /* NetworkLoggerStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F465143528194D7100F5244B /* NetworkLoggerStore.xcdatamodeld */; };
+		F465143E2819514C00F5244B /* NetworkLoggerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465143D2819514C00F5244B /* NetworkLoggerManager.swift */; };
+		F4651443281AD56800F5244B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651442281AD56800F5244B /* CoreDataManager.swift */; };
+		F4651447281ADD2C00F5244B /* CoreDataManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651446281ADD2C00F5244B /* CoreDataManagerContract.swift */; };
+		F4651449281ADD5A00F5244B /* CoreDataStoreName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651448281ADD5A00F5244B /* CoreDataStoreName.swift */; };
+		F4651456281B035500F5244B /* NetworkLogger+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651454281B035500F5244B /* NetworkLogger+CoreDataClass.swift */; };
+		F4651457281B035500F5244B /* NetworkLogger+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651455281B035500F5244B /* NetworkLogger+CoreDataProperties.swift */; };
+		F4651459281B03A300F5244B /* NetworkLogger+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651458281B03A300F5244B /* NetworkLogger+Helpers.swift */; };
+		F465145C281B139700F5244B /* Data+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465145B281B139700F5244B /* Data+Helpers.swift */; };
+		F465145F281B140B00F5244B /* NetworkLoggerManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465145E281B140B00F5244B /* NetworkLoggerManagerContract.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +86,15 @@
 		24AA93C925AF0F0D007588C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24AA93D825AF0F24007588C7 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		F465143628194D7100F5244B /* NetworkLoggerStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NetworkLoggerStore.xcdatamodel; sourceTree = "<group>"; };
+		F465143D2819514C00F5244B /* NetworkLoggerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerManager.swift; sourceTree = "<group>"; };
+		F4651442281AD56800F5244B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		F4651446281ADD2C00F5244B /* CoreDataManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerContract.swift; sourceTree = "<group>"; };
+		F4651448281ADD5A00F5244B /* CoreDataStoreName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStoreName.swift; sourceTree = "<group>"; };
+		F4651454281B035500F5244B /* NetworkLogger+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkLogger+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F4651455281B035500F5244B /* NetworkLogger+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkLogger+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F4651458281B03A300F5244B /* NetworkLogger+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkLogger+Helpers.swift"; sourceTree = "<group>"; };
+		F465145B281B139700F5244B /* Data+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Helpers.swift"; sourceTree = "<group>"; };
+		F465145E281B140B00F5244B /* NetworkLoggerManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerManagerContract.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,10 +161,10 @@
 		24AA93B925AF0F0D007588C7 /* InstabugNetworkClient */ = {
 			isa = PBXGroup;
 			children = (
-				F465143B2819500300F5244B /* NetworkClient */,
+				F465145A281B138100F5244B /* Helpers */,
 				F465143828194F7300F5244B /* CoreData */,
-				24AA93BA25AF0F0D007588C7 /* InstabugNetworkClient.h */,
-				24AA93BB25AF0F0D007588C7 /* Info.plist */,
+				F465143B2819500300F5244B /* NetworkClient */,
+				F465143C281950B000F5244B /* Resources */,
 			);
 			path = InstabugNetworkClient;
 			sourceTree = "<group>";
@@ -163,25 +181,28 @@
 		F465143828194F7300F5244B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				F465143A28194FB600F5244B /* Manager */,
-				F465143928194FAE00F5244B /* Store */,
+				F465143A28194FB600F5244B /* Managers */,
+				F4651452281B02D100F5244B /* Entities */,
+				F465143928194FAE00F5244B /* Stores */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		F465143928194FAE00F5244B /* Store */ = {
+		F465143928194FAE00F5244B /* Stores */ = {
 			isa = PBXGroup;
 			children = (
 				F465143528194D7100F5244B /* NetworkLoggerStore.xcdatamodeld */,
 			);
-			path = Store;
+			path = Stores;
 			sourceTree = "<group>";
 		};
-		F465143A28194FB600F5244B /* Manager */ = {
+		F465143A28194FB600F5244B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				F4651441281AD55800F5244B /* CoreData */,
+				F4651440281AD54700F5244B /* NetworkLogger */,
 			);
-			path = Manager;
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		F465143B2819500300F5244B /* NetworkClient */ = {
@@ -190,6 +211,84 @@
 				24AA93D825AF0F24007588C7 /* NetworkClient.swift */,
 			);
 			path = NetworkClient;
+			sourceTree = "<group>";
+		};
+		F465143C281950B000F5244B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				24AA93BA25AF0F0D007588C7 /* InstabugNetworkClient.h */,
+				24AA93BB25AF0F0D007588C7 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F4651440281AD54700F5244B /* NetworkLogger */ = {
+			isa = PBXGroup;
+			children = (
+				F465143D2819514C00F5244B /* NetworkLoggerManager.swift */,
+				F465145D281B140100F5244B /* Contract */,
+			);
+			path = NetworkLogger;
+			sourceTree = "<group>";
+		};
+		F4651441281AD55800F5244B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				F4651442281AD56800F5244B /* CoreDataManager.swift */,
+				F4651444281ADD0600F5244B /* Contract */,
+				F4651445281ADD1A00F5244B /* Helpers */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		F4651444281ADD0600F5244B /* Contract */ = {
+			isa = PBXGroup;
+			children = (
+				F4651446281ADD2C00F5244B /* CoreDataManagerContract.swift */,
+			);
+			path = Contract;
+			sourceTree = "<group>";
+		};
+		F4651445281ADD1A00F5244B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F4651448281ADD5A00F5244B /* CoreDataStoreName.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F4651452281B02D100F5244B /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				F4651453281B02DD00F5244B /* NetworkLogger */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		F4651453281B02DD00F5244B /* NetworkLogger */ = {
+			isa = PBXGroup;
+			children = (
+				F4651454281B035500F5244B /* NetworkLogger+CoreDataClass.swift */,
+				F4651455281B035500F5244B /* NetworkLogger+CoreDataProperties.swift */,
+				F4651458281B03A300F5244B /* NetworkLogger+Helpers.swift */,
+			);
+			path = NetworkLogger;
+			sourceTree = "<group>";
+		};
+		F465145A281B138100F5244B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F465145B281B139700F5244B /* Data+Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F465145D281B140100F5244B /* Contract */ = {
+			isa = PBXGroup;
+			children = (
+				F465145E281B140B00F5244B /* NetworkLoggerManagerContract.swift */,
+			);
+			path = Contract;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,7 +446,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F465143728194D7100F5244B /* NetworkLoggerStore.xcdatamodeld in Sources */,
+				F465145F281B140B00F5244B /* NetworkLoggerManagerContract.swift in Sources */,
+				F4651449281ADD5A00F5244B /* CoreDataStoreName.swift in Sources */,
+				F465143E2819514C00F5244B /* NetworkLoggerManager.swift in Sources */,
+				F4651443281AD56800F5244B /* CoreDataManager.swift in Sources */,
+				F4651447281ADD2C00F5244B /* CoreDataManagerContract.swift in Sources */,
+				F465145C281B139700F5244B /* Data+Helpers.swift in Sources */,
+				F4651456281B035500F5244B /* NetworkLogger+CoreDataClass.swift in Sources */,
+				F4651457281B035500F5244B /* NetworkLogger+CoreDataProperties.swift in Sources */,
 				24AA93D925AF0F24007588C7 /* NetworkClient.swift in Sources */,
+				F4651459281B03A300F5244B /* NetworkLogger+Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,7 +671,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InstabugNetworkClient/Info.plist;
+				INFOPLIST_FILE = InstabugNetworkClient/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -591,7 +699,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InstabugNetworkClient/Info.plist;
+				INFOPLIST_FILE = InstabugNetworkClient/Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
