@@ -6,7 +6,6 @@
 //
 
 import XCTest
-import CoreData
 @testable import InstabugNetworkClient
 
 class NetworkLoggerManagerTests: XCTestCase {
@@ -16,14 +15,14 @@ class NetworkLoggerManagerTests: XCTestCase {
     
     // MARK: - LIFECYCLE
     //
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() {
+        super.setUp()
         sut = NetworkLoggerManager()
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown() {
         sut = nil
-        try super.tearDownWithError()
+        super.tearDown()
     }
     
     // MARK: - METHODS
@@ -38,17 +37,8 @@ class NetworkLoggerManagerTests: XCTestCase {
     
     func testSUT_whenSaveLogsWithLessThan1MBSize_logSavedSucccessfullyWithOriginalPayload() {
         // Given
-        let payload: Data = .init(repeating: .init(), count: 200)
-        
-        let log: LogDataModel = .init(
-            domainError: nil,
-            errorCode: nil,
-            requestMethod: "GET",
-            requestPayload: payload,
-            requestURL: nil,
-            responsePayload: payload,
-            responseStatusCode: 200
-        )
+        let payload: Data = MockData.payload
+        let log: LogDataModel = MockData.log
         
         // When
         sut.saveLog(log)
@@ -60,18 +50,8 @@ class NetworkLoggerManagerTests: XCTestCase {
     
     func testSUT_whenSaveLogsLargerThan1MBSize_logSavedWithPayloadDescriptionIneasted() {
         // Given
-        let largePayload: Data = .init(repeating: .init(), count: 1050)
-        let largePayloadDescription: Data? = "payload too large".data(using: .utf8)
-        
-        let log: LogDataModel = .init(
-            domainError: nil,
-            errorCode: nil,
-            requestMethod: "GET",
-            requestPayload: largePayload,
-            requestURL: nil,
-            responsePayload: largePayload,
-            responseStatusCode: 200
-        )
+        let largePayloadDescription: Data? = MockData.largePayloadDescription
+        let log: LogDataModel = MockData.logWithLargePayload
         
         // When
         sut.saveLog(log)
@@ -79,5 +59,30 @@ class NetworkLoggerManagerTests: XCTestCase {
         // Then
         XCTAssertEqual(sut.fetchLogs().last?.requestPayload, largePayloadDescription)
         XCTAssertEqual(sut.fetchLogs().last?.responsePayload, largePayloadDescription)
+    }
+    
+    func testSUT_whenSaveNewLogger_andRowsCountIsMax_loggerSavedSuccessfully() {
+        // Given
+        let logs: [LogDataModel] = MockData._1001_logs
+        
+        // When
+        logs.forEach { sut.saveLog($0) }
+        let cachedLogs: [LogDataModel] = sut.fetchLogsData()
+        
+        // Then
+        XCTAssertLessThanOrEqual(cachedLogs.count, MockData.maxRows)
+    }
+    
+    func testSUT_whenCallDeleteAll_logsAreEmptyTrue() {
+        // Given
+        let logs: [LogDataModel] = Array(repeating: MockData.log, count: 10)
+        
+        // When
+        logs.forEach { sut.saveLog($0) }
+        sut.deleteAll()
+        let savedLogs: [LogDataModel] = sut.fetchLogsData()
+        
+        // Then
+        XCTAssertTrue(savedLogs.isEmpty)
     }
 }
