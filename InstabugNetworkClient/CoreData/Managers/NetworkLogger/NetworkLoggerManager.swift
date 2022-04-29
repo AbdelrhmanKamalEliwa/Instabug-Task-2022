@@ -59,5 +59,4 @@ extension NetworkLoggerManager: NetworkLoggerManagerContract {
     func deleteAll() {
         dataManager.deleteAll()
     }
-    
 }

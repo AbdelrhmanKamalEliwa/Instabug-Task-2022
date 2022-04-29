@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import InstabugNetworkClient
+import CoreData
 
 class NetworkLoggerManagerTests: XCTestCase {
     // MARK: - PROPERRTIES
@@ -17,6 +18,10 @@ class NetworkLoggerManagerTests: XCTestCase {
     //
     override func setUp() {
         super.setUp()
+        
+        /// to store data into the runtime memory instead
+        LoggerDataManager.shared.storeType = NSInMemoryStoreType
+        
         sut = NetworkLoggerManager()
     }
 

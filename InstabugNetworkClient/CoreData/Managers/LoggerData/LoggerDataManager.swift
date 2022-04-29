@@ -11,7 +11,13 @@ import CoreData
 class LoggerDataManager {
     static let shared: LoggerDataManager = LoggerDataManager()
     
-    private lazy var context: NSManagedObjectContext = {
+    var storeType: String = NSSQLiteStoreType
+    
+    private lazy var mainContext: NSManagedObjectContext = {
+        NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+    }()
+    
+    private lazy var backgroundContext: NSManagedObjectContext = {
         NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
     }()
     
@@ -20,7 +26,7 @@ class LoggerDataManager {
     }
 }
 
-// MARK: - PRIVATE METHODS
+// MARK: - SETUP COREDATA STACK
 //
 private extension LoggerDataManager {
     /// Setup the CoreData
@@ -36,7 +42,6 @@ private extension LoggerDataManager {
     func createManagedObjectModel(
         _ resourceName: CoreDataStoreName
     ) {
-        
         guard
             let modelURL = Bundle(for: LoggerDataManager.self)
                 .url(forResource: resourceName.rawValue, withExtension: "momd")
@@ -50,46 +55,58 @@ private extension LoggerDataManager {
             fatalError("Failed to create model from file: \(modelURL)")
         }
         
-        createAndAddPersistentStoreCoordinator(.networkLogger, managedObjectModel: mom)
+        createPersistentContainer(.networkLogger, managedObjectModel: mom)
     }
     
-    func createAndAddPersistentStoreCoordinator(
+    func createPersistentContainer(
         _ resourceName: CoreDataStoreName,
         managedObjectModel mom: NSManagedObjectModel
     ) {
-        /// Create PersistentStoreCoordinator
-        ///
-        let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
+        let persistentContainer = NSPersistentContainer(
+            name: resourceName.rawValue,
+            managedObjectModel: mom
+        )
         
-        /// Add PersistentStoreCoordinator
-        ///
-        let dirURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).last
-        let fileURL = URL(string: "\(resourceName.rawValue).sql", relativeTo: dirURL)
-        do {
-            try psc
-                .addPersistentStore(
-                    ofType: NSSQLiteStoreType,
-                    configurationName: nil,
-                    at: fileURL, options: nil
-                )
-            
-            createManagedObjectContext(persistentStoreCoordinator: psc)
-        } catch {
-            fatalError("Error configuring persistent store: \(error)")
+        let description = persistentContainer.persistentStoreDescriptions.first
+        description?.type = storeType
+        
+        persistentContainer.loadPersistentStores { description, error in
+            if let error = error {
+                fatalError("Error configuring persistent store: \(error)")
+            }
         }
+        
+        createMainContext(persistentContainer: persistentContainer)
+        createBackgroundContext(persistentContainer: persistentContainer)
     }
     
-    /// Create the ManagedObjectContext
+    /// Create the Main ManagedObjectContext
     ///
-    func createManagedObjectContext(
-        persistentStoreCoordinator psc: NSPersistentStoreCoordinator
+    func createMainContext(
+        persistentContainer pc: NSPersistentContainer
     ) {
-        context.persistentStoreCoordinator = psc
+        let mainContext = pc.viewContext
+        mainContext.automaticallyMergesChangesFromParent = true
+        self.mainContext = mainContext
     }
     
+    /// Create the Background ManagedObjectContext
+    ///
+    func createBackgroundContext(
+        persistentContainer pc: NSPersistentContainer
+    ) {
+        let backgroundContext = pc.newBackgroundContext()
+        backgroundContext.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
+        self.backgroundContext = backgroundContext
+    }
+}
+
+// MARK: - PRIVATE HELPER METHODS
+//
+private extension LoggerDataManager {
     func createNewLogger(from log: LogDataModel, with maxPayloadSize: Int) {
         let newLogger = NSEntityDescription.insertNewObject(
-            forEntityName: NetworkLogger.entityName, into: context
+            forEntityName: NetworkLogger.entityName, into: backgroundContext
         )
         
         newLogger.setValue(log.id, forKeyPath: NetworkLogger.Properties.id)
@@ -121,9 +138,9 @@ extension LoggerDataManager: LoggerDataManagerContract {
         fetchRequest.sortDescriptors = [sortByDate]
         fetchRequest.returnsObjectsAsFaults = false
         
-        context.performAndWait {
+        mainContext.performAndWait {
             do {
-                logs = try context.fetch(fetchRequest)
+                logs = try mainContext.fetch(fetchRequest)
             } catch {
                 fatalError("Unable to fetch logs due to: \(error.localizedDescription)")
             }
@@ -135,20 +152,19 @@ extension LoggerDataManager: LoggerDataManagerContract {
     func saveLog(_ log: LogDataModel, with maxRows: Int, and maxPayloadSize: Int) {
         let logs: [NetworkLogger] = fetchLogs()
         
-        context.performAndWait {
-            
+        backgroundContext.performAndWait {
             if
                 logs.count >= maxRows,
                 let firstLog = logs.first,
-                let existedLog = try? context.existingObject(with: firstLog.objectID) {
+                let existedLog = try? backgroundContext.existingObject(with: firstLog.objectID) {
                 
-                context.delete(existedLog)
+                backgroundContext.delete(existedLog)
             }
             
            createNewLogger(from: log, with: maxPayloadSize)
             
             do {
-                try context.save()
+                try backgroundContext.save()
             } catch {
                 fatalError("Unable to save log due to: \(error.localizedDescription)")
             }
@@ -158,10 +174,10 @@ extension LoggerDataManager: LoggerDataManagerContract {
     func deleteAll() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: NetworkLogger.entityName)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        context.performAndWait {
+        backgroundContext.performAndWait {
             do {
-                try context.execute(deleteRequest)
-                try context.save()
+                try backgroundContext.execute(deleteRequest)
+                try backgroundContext.save()
             } catch {
                 fatalError("Unable to delete logs due to: \(error.localizedDescription)")
             }
