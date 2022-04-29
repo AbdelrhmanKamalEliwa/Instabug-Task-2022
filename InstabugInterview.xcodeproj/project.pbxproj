@@ -21,8 +21,8 @@
 		24AA93D925AF0F24007588C7 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AA93D825AF0F24007588C7 /* NetworkClient.swift */; };
 		F465143728194D7100F5244B /* NetworkLoggerStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F465143528194D7100F5244B /* NetworkLoggerStore.xcdatamodeld */; };
 		F465143E2819514C00F5244B /* NetworkLoggerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465143D2819514C00F5244B /* NetworkLoggerManager.swift */; };
-		F4651443281AD56800F5244B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651442281AD56800F5244B /* CoreDataManager.swift */; };
-		F4651447281ADD2C00F5244B /* CoreDataManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651446281ADD2C00F5244B /* CoreDataManagerContract.swift */; };
+		F4651443281AD56800F5244B /* LoggerDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651442281AD56800F5244B /* LoggerDataManager.swift */; };
+		F4651447281ADD2C00F5244B /* LoggerDataManagerContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651446281ADD2C00F5244B /* LoggerDataManagerContract.swift */; };
 		F4651449281ADD5A00F5244B /* CoreDataStoreName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651448281ADD5A00F5244B /* CoreDataStoreName.swift */; };
 		F4651459281B03A300F5244B /* NetworkLogger+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651458281B03A300F5244B /* NetworkLogger+Helpers.swift */; };
 		F465145C281B139700F5244B /* Data+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465145B281B139700F5244B /* Data+Helpers.swift */; };
@@ -32,6 +32,7 @@
 		F4651466281B23B000F5244B /* LogDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651465281B23B000F5244B /* LogDataModel.swift */; };
 		F4651468281B23D000F5244B /* LogDataModel+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651467281B23D000F5244B /* LogDataModel+Helpers.swift */; };
 		F4651470281B352800F5244B /* NetworkLoggerManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465146F281B352800F5244B /* NetworkLoggerManagerTests.swift */; };
+		F4651472281C1A7600F5244B /* NSObject+Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4651471281C1A7600F5244B /* NSObject+Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,8 +91,8 @@
 		24AA93D825AF0F24007588C7 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		F465143628194D7100F5244B /* NetworkLoggerStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NetworkLoggerStore.xcdatamodel; sourceTree = "<group>"; };
 		F465143D2819514C00F5244B /* NetworkLoggerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerManager.swift; sourceTree = "<group>"; };
-		F4651442281AD56800F5244B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
-		F4651446281ADD2C00F5244B /* CoreDataManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerContract.swift; sourceTree = "<group>"; };
+		F4651442281AD56800F5244B /* LoggerDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerDataManager.swift; sourceTree = "<group>"; };
+		F4651446281ADD2C00F5244B /* LoggerDataManagerContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerDataManagerContract.swift; sourceTree = "<group>"; };
 		F4651448281ADD5A00F5244B /* CoreDataStoreName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStoreName.swift; sourceTree = "<group>"; };
 		F4651458281B03A300F5244B /* NetworkLogger+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkLogger+Helpers.swift"; sourceTree = "<group>"; };
 		F465145B281B139700F5244B /* Data+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Helpers.swift"; sourceTree = "<group>"; };
@@ -101,6 +102,7 @@
 		F4651465281B23B000F5244B /* LogDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogDataModel.swift; sourceTree = "<group>"; };
 		F4651467281B23D000F5244B /* LogDataModel+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogDataModel+Helpers.swift"; sourceTree = "<group>"; };
 		F465146F281B352800F5244B /* NetworkLoggerManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLoggerManagerTests.swift; sourceTree = "<group>"; };
+		F4651471281C1A7600F5244B /* NSObject+Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Helper.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,7 +204,7 @@
 		F465143A28194FB600F5244B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				F4651441281AD55800F5244B /* CoreData */,
+				F4651441281AD55800F5244B /* LoggerData */,
 				F4651440281AD54700F5244B /* NetworkLogger */,
 			);
 			path = Managers;
@@ -234,20 +236,20 @@
 			path = NetworkLogger;
 			sourceTree = "<group>";
 		};
-		F4651441281AD55800F5244B /* CoreData */ = {
+		F4651441281AD55800F5244B /* LoggerData */ = {
 			isa = PBXGroup;
 			children = (
-				F4651442281AD56800F5244B /* CoreDataManager.swift */,
+				F4651442281AD56800F5244B /* LoggerDataManager.swift */,
 				F4651444281ADD0600F5244B /* Contract */,
 				F4651445281ADD1A00F5244B /* Helpers */,
 			);
-			path = CoreData;
+			path = LoggerData;
 			sourceTree = "<group>";
 		};
 		F4651444281ADD0600F5244B /* Contract */ = {
 			isa = PBXGroup;
 			children = (
-				F4651446281ADD2C00F5244B /* CoreDataManagerContract.swift */,
+				F4651446281ADD2C00F5244B /* LoggerDataManagerContract.swift */,
 			);
 			path = Contract;
 			sourceTree = "<group>";
@@ -283,6 +285,7 @@
 			isa = PBXGroup;
 			children = (
 				F465145B281B139700F5244B /* Data+Helpers.swift */,
+				F4651471281C1A7600F5244B /* NSObject+Helper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -487,14 +490,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4651462281B1F3400F5244B /* NetworkLogger+CoreDataClass.swift in Sources */,
+				F4651472281C1A7600F5244B /* NSObject+Helper.swift in Sources */,
 				F465143728194D7100F5244B /* NetworkLoggerStore.xcdatamodeld in Sources */,
 				F4651466281B23B000F5244B /* LogDataModel.swift in Sources */,
 				F465145F281B140B00F5244B /* NetworkLoggerManagerContract.swift in Sources */,
 				F4651449281ADD5A00F5244B /* CoreDataStoreName.swift in Sources */,
 				F4651463281B1F3400F5244B /* NetworkLogger+CoreDataProperties.swift in Sources */,
 				F465143E2819514C00F5244B /* NetworkLoggerManager.swift in Sources */,
-				F4651443281AD56800F5244B /* CoreDataManager.swift in Sources */,
-				F4651447281ADD2C00F5244B /* CoreDataManagerContract.swift in Sources */,
+				F4651443281AD56800F5244B /* LoggerDataManager.swift in Sources */,
+				F4651447281ADD2C00F5244B /* LoggerDataManagerContract.swift in Sources */,
 				F465145C281B139700F5244B /* Data+Helpers.swift in Sources */,
 				F4651468281B23D000F5244B /* LogDataModel+Helpers.swift in Sources */,
 				24AA93D925AF0F24007588C7 /* NetworkClient.swift in Sources */,

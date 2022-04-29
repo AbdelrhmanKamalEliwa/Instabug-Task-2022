@@ -28,5 +28,56 @@ class NetworkLoggerManagerTests: XCTestCase {
     
     // MARK: - METHODS
     //
+    func testSUT_whenFetchLogsDataForFirstTime_logsAreEmptyTrue() {
+        // When
+        let logs: [LogDataModel] = sut.fetchLogsData()
+        
+        // Then
+        XCTAssertTrue(logs.isEmpty)
+    }
     
+    func testSUT_whenSaveLogsWithLessThan1MBSize_logSavedSucccessfullyWithOriginalPayload() {
+        // Given
+        let payload: Data = .init(repeating: .init(), count: 200)
+        
+        let log: LogDataModel = .init(
+            domainError: nil,
+            errorCode: nil,
+            requestMethod: "GET",
+            requestPayload: payload,
+            requestURL: nil,
+            responsePayload: payload,
+            responseStatusCode: 200
+        )
+        
+        // When
+        sut.saveLog(log)
+        
+        // Then
+        XCTAssertEqual(sut.fetchLogs().last?.requestPayload, payload)
+        XCTAssertEqual(sut.fetchLogs().last?.responsePayload, payload)
+    }
+    
+    func testSUT_whenSaveLogsLargerThan1MBSize_logSavedWithPayloadDescriptionIneasted() {
+        // Given
+        let largePayload: Data = .init(repeating: .init(), count: 1050)
+        let largePayloadDescription: Data? = "payload too large".data(using: .utf8)
+        
+        let log: LogDataModel = .init(
+            domainError: nil,
+            errorCode: nil,
+            requestMethod: "GET",
+            requestPayload: largePayload,
+            requestURL: nil,
+            responsePayload: largePayload,
+            responseStatusCode: 200
+        )
+        
+        // When
+        sut.saveLog(log)
+        
+        // Then
+        XCTAssertEqual(sut.fetchLogs().last?.requestPayload, largePayloadDescription)
+        XCTAssertEqual(sut.fetchLogs().last?.responsePayload, largePayloadDescription)
+    }
 }

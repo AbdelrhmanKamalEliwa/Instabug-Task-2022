@@ -9,5 +9,5 @@ protocol NetworkLoggerManagerContract {
     func fetchLogs() -> [NetworkLogger]
     func fetchLogsData() -> [LogDataModel]
     func saveLog(_ log: LogDataModel)
-    func deleteLogs()
+    func deleteAll()
 }
