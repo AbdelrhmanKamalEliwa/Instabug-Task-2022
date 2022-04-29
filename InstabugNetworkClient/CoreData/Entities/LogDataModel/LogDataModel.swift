@@ -8,13 +8,13 @@
 import Foundation
 
 public struct LogDataModel {
-    let creationDate: Date? = Date()
-    let domainError: String?
-    let errorCode: Int?
-    let id: UUID? = UUID()
-    let requestMethod: String?
-    let requestPayload: Data?
-    let requestURL: String?
-    let responsePayload: Data?
-    let responseStatusCode: Int?
+    public let creationDate: Date? = Date()
+    public let domainError: String?
+    public let errorCode: Int?
+    public let id: UUID? = UUID()
+    public let requestMethod: String?
+    public let requestPayload: Data?
+    public let requestURL: String?
+    public let responsePayload: Data?
+    public let responseStatusCode: Int?
 }

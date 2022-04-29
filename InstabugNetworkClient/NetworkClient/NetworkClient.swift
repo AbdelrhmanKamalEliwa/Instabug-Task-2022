@@ -21,11 +21,11 @@ public class NetworkClient {
         executeRequest(url, method: "GET", payload: nil, completionHandler: completionHandler)
     }
 
-    public func post(_ url: URL, payload: Data?=nil, completionHandler: @escaping (Data?) -> Void) {
-        executeRequest(url, method: "POSt", payload: payload, completionHandler: completionHandler)
+    public func post(_ url: URL, payload: Data? = nil, completionHandler: @escaping (Data?) -> Void) {
+        executeRequest(url, method: "POST", payload: payload, completionHandler: completionHandler)
     }
 
-    public func put(_ url: URL, payload: Data?=nil, completionHandler: @escaping (Data?) -> Void) {
+    public func put(_ url: URL, payload: Data? = nil, completionHandler: @escaping (Data?) -> Void) {
         executeRequest(url, method: "PUT", payload: payload, completionHandler: completionHandler)
     }
 
